@@ -54,3 +54,11 @@ function back() {
     header('Location: ' . $_SERVER['REQUEST_URI']);
     exit;
 }
+
+function flash($message, $type = 'success') {
+    $_SESSION['flash'] = [$type, $message];
+}
+
+function e($text) {
+    return htmlspecialchars($text ?? '', ENT_QUOTES);
+}

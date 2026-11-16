@@ -124,6 +124,13 @@ input:focus {
     box-shadow: 0 0 0 4px #4c8dff25;
 }
 
+.main { 
+    position: relative; 
+    z-index: 1; 
+    min-height: 100vh; 
+    margin-left: 244px; 
+}
+
 
 /* Buttons */
 .login-button {
@@ -176,4 +183,35 @@ input:focus {
         animation: none !important;
         transition: none !important;
     }
+}
+
+/* profile */
+.apply-box {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 14px;
+}
+
+.profile-top {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 20px;
+}
+
+.avatar.big {
+    flex: none;
+    width: 60px;
+    height: 60px;
+    font-size: 1.5rem;
+}
+
+.card {
+    padding: 22px;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-card);
+    background: var(--surface);
+    backdrop-filter: blur(12px);
 }

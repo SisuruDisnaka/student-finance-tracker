@@ -8,6 +8,7 @@ This document maintains a record of all change requests raised during the LawSph
 | CR ID | Date | Change Requested | Requested By | PR | Reviewed By | Approval | Review Date |
 |-------|------|-----------------|--------------|----|-------------|----------|-------------|
 | CR-001 | 2026-11-11 | Add Login UI and Authentication | Sisuru Disnaka | #1 | Imasha Minoli | Merged | 2026-11-16 |
+| CR-002 | 2026-11-16 | Add profile page | Manuji Dilansa | #4 | Imasha Minoli | Merged | 2026-11-16 |
 
 ## Approval Status Values
 

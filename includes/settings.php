@@ -3,6 +3,6 @@
 return[
     'host' => 'localhost',
     'username' => 'root',
-    'password' => '',
+    'password' => 'root',
     'database' => 'student_finance_db'
 ];
