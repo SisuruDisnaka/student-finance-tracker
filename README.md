@@ -1,5 +1,4 @@
 # StudentFinanceTracker
-
 A personal finance tracker for students, built with plain PHP, MySQL, HTML, CSS and vanilla JavaScript.
 
 **University of Sri Jayewardenepura** <br>
