@@ -1,15 +1,26 @@
+
 # Change Request Log
-One record of every change request, who reviewed it, and whether it was approved.
 
-| CR ID | Date | Change requested | Requested by | PR | Reviewed by | Approval | Date|
-|---|---|---|---|---|---|---|---|---|
-| CR-001 | 2026-11-11 | *Add Login UI and Authetication* | Sisuru Disnaka | #1 |  |  |  |
-| CR-002 | | | | | | | | |
-| CR-003 | | | | | | | | |
+This document maintains a record of all change requests raised during the LawSphere project, including the request details, assigned Pull Requests (PRs), reviewers, approval decisions, and implementation status.
 
-**Approval values:** Submitted, Approved, Rejected, Merged
+## Change Request Register
 
-**How to update:**
-1. Add a new row when a change request is raised (status `Submitted`).
-2. The reviewer fills in **Reviewed by** and sets **Approval** to `Approved` or `Rejected`, and the date.
-4. After the pull request is merged, set **Approval** to `Implemented`.
+| CR ID | Date | Change Requested | Requested By | PR | Reviewed By | Approval | Review Date |
+|-------|------|-----------------|--------------|----|-------------|----------|-------------|
+| CR-001 | 2026-11-11 | Add Login UI and Authentication | Sisuru Disnaka | #1 | Imasha Minoli | Merged | 2026-11-16 |
+
+## Approval Status Values
+
+- **Submitted** – The change request has been submitted for review.
+- **Approved** – The reviewer has approved the change request.
+- **Rejected** – The reviewer has rejected the change request.
+- **Merged** – The related Pull Request has been merged into the target branch.
+
+## How to Update the Log
+
+1. Add a new row whenever a change request is raised. Set its status to `Submitted`.
+2. Once the Pull Request is reviewed, the reviewer must fill in the `Reviewed By` and `Review Date` columns.
+3. Update the `Approval` column to either `Approved` or `Rejected` based on the review decision.
+4. After the approved Pull Request is merged, update the `Approval` status to `Merged`.
+
+
