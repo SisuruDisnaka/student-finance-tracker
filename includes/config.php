@@ -62,3 +62,88 @@ function flash($message, $type = 'success') {
 function e($text) {
     return htmlspecialchars($text ?? '', ENT_QUOTES);
 }
+
+
+function show_flash() {
+    if (!isset($_SESSION['flash'])) {
+        return '';
+    }
+
+    [$type, $message] = $_SESSION['flash'];
+    unset($_SESSION['flash']);
+
+    return "<div class='alert $type'>" . e($message) . "</div>";
+}
+
+function cats($like) {
+    global $uid;
+
+    return rows(
+        'SELECT c.*, COALESCE(SUM(e.amount), 0) AS spent
+         FROM categories c
+         LEFT JOIN expenses e
+            ON e.category_id = c.id AND e.expense_date LIKE ?
+         WHERE c.user_id = ?
+         GROUP BY c.id
+         ORDER BY c.name',
+        [$like, $uid]
+    );
+}
+
+function add_notification($key, $title, $message, $type) {
+    global $uid;
+
+    q(
+        'INSERT IGNORE INTO notifications
+         (user_id, title, message, type, ref_key)
+         VALUES (?, ?, ?, ?, ?)',
+        [$uid, $title, $message, $type, $key]
+    );
+}
+
+function notify($m) {
+    global $uid;
+
+    // Budget alerts
+    foreach (cats($m . '%') as $c) {
+        $budget = $c['budget_amount'];
+
+        if ($budget <= 0) {
+            continue;
+        }
+
+        $pct = $c['spent'] / $budget * 100;
+
+        if ($pct > 100) {
+            add_notification('over' . $c['id'] . $m, 'Budget exceeded',
+                'Your ' . $c['name'] . ' budget has been exceeded.', 'danger');
+        } elseif ($pct >= 80) {
+            add_notification('warn' . $c['id'] . $m, 'Budget warning',
+                $c['name'] . ' budget is ' . floor($pct) . '% used.', 'warning');
+        }
+    }
+
+    // Saving plan alerts
+    foreach (rows('SELECT * FROM saving_plans WHERE user_id=?', [$uid]) as $p) {
+        if ($p['target_amount'] <= 0) {
+            continue;
+        }
+
+        $pct = $p['current_amount'] / $p['target_amount'] * 100;
+        $step = floor($pct / 25) * 25;
+
+        if ($pct >= 100) {
+            add_notification('done' . $p['id'], 'Goal reached',
+                'Congratulations! You reached your ' . $p['name'] . ' saving goal.', 'success');
+        } elseif ($step > 0) {
+            add_notification('save' . $p['id'] . '_' . $step, 'Saving progress',
+                'You are ' . $step . '% closer to your ' . $p['name'] . ' goal.', 'info');
+        }
+    }
+
+    // Monthly reminder
+    if (val('SELECT COUNT(*) FROM recurring_items WHERE user_id=? AND active=1', [$uid])) {
+        add_notification('cycle' . date('Y-m'), 'Monthly reminder',
+            'Your monthly financial cycle is ready to review.', 'info');
+    }
+}
