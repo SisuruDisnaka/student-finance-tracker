@@ -1,5 +1,6 @@
 USE student_finance_db;
 
+
 CREATE TABLE default_categories (
     name VARCHAR(60)
 );

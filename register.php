@@ -39,6 +39,7 @@ if($_POST){
     <title>Register | StudentFinance</title>
     <link rel="stylesheet" href="assets/style.css">
 </head>
+
 <body class="auth-body">
 
     <div class="glow glow-one"></div>
