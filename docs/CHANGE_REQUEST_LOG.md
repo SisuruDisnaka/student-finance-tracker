@@ -4,12 +4,12 @@ This document maintains a record of all change requests raised during the LawSph
 
 ## Change Request Register
 
-| CR ID  | Date       | Change Requested                | Requested By   | PR  | Reviewed By   | Approval | Review Date |
-| ------ | ---------- | ------------------------------- | -------------- | --- | ------------- | -------- | ----------- |
-| CR-001 | 2026-11-11 | Add Login UI and Authentication | Sisuru Disnaka | #1  | Imasha Minoli | Merged   | 2026-11-16  |
-| CR-002 | 2026-11-16 | Add profile page                | Manuji Dilansa | #4  | Imasha Minoli | Merged   | 2026-11-16  |
-| CR-003 | 2026-11-17 | Add Header & Footer             | Sisuru Disnaka | #6  | Amaya Thisera | Merged   | 2026-11-18  |
-| CR-007 | 2026-11-18 | Add Register and Logout         | Sisuru Disnaka |     |               |          |             |
+| CR ID  | Date       | Change Requested                | Requested By   | PR  | Reviewed By   | Approval  | Review Date |
+| ------ | ---------- | ------------------------------- | -------------- | --- | ------------- | --------- | ----------- |
+| CR-001 | 2026-11-11 | Add Login UI and Authentication | Sisuru Disnaka | #1  | Imasha Minoli | Merged    | 2026-11-16  |
+| CR-002 | 2026-11-16 | Add profile page                | Manuji Dilansa | #4  | Imasha Minoli | Merged    | 2026-11-16  |
+| CR-003 | 2026-11-17 | Add Header & Footer             | Sisuru Disnaka | #6  | Amaya Thisera | Merged    | 2026-11-18  |
+| CR-007 | 2026-11-18 | Add Register and Logout         | Sisuru Disnaka |     |               | To Review |             |
 
 ## Approval Status Values
 
