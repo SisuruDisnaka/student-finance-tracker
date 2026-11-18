@@ -1,14 +1,14 @@
-
 # Change Request Log
 
 This document maintains a record of all change requests raised during the LawSphere project, including the request details, assigned Pull Requests (PRs), reviewers, approval decisions, and implementation status.
 
 ## Change Request Register
 
-| CR ID | Date | Change Requested | Requested By | PR | Reviewed By | Approval | Review Date |
-|-------|------|-----------------|--------------|----|-------------|----------|-------------|
-| CR-001 | 2026-11-11 | Add Login UI and Authentication | Sisuru Disnaka | #1 | Imasha Minoli | Merged | 2026-11-16 |
-| CR-002 | 2026-11-16 | Add profile page | Manuji Dilansa | #4 | Imasha Minoli | Merged | 2026-11-16 |
+| CR ID  | Date       | Change Requested                | Requested By   | PR  | Reviewed By   | Approval | Review Date |
+| ------ | ---------- | ------------------------------- | -------------- | --- | ------------- | -------- | ----------- |
+| CR-001 | 2026-11-11 | Add Login UI and Authentication | Sisuru Disnaka | #1  | Imasha Minoli | Merged   | 2026-11-16  |
+| CR-002 | 2026-11-16 | Add profile page                | Manuji Dilansa | #4  | Imasha Minoli | Merged   | 2026-11-16  |
+| CR-003 | 2026-11-17 | Add Header & Footer             | Sisuru Disnaka | #6  | Amaya Thisera | Merged   | 2026-11-18  |
 
 ## Approval Status Values
 
@@ -23,5 +23,3 @@ This document maintains a record of all change requests raised during the LawSph
 2. Once the Pull Request is reviewed, the reviewer must fill in the `Reviewed By` and `Review Date` columns.
 3. Update the `Approval` column to either `Approved` or `Rejected` based on the review decision.
 4. After the approved Pull Request is merged, update the `Approval` status to `Merged`.
-
-
