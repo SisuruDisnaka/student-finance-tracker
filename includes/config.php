@@ -20,6 +20,16 @@ if(!$uid && !defined('PUBLIC_PAGE')){
     exit;
 }
 
+// Month filter
+
+$month = $_GET['m'] ?? date('Y-m');
+
+if ($month !== 'all' && !preg_match('/^\d{4}-\d{2}$/', $month)) {
+    $month = date('Y-m');
+}
+
+$like = ($month === 'all') ? '%' : $month . '%';
+
 function q($sql, $params = []) {
     global $db;
 
@@ -146,4 +156,28 @@ function notify($m) {
         add_notification('cycle' . date('Y-m'), 'Monthly reminder',
             'Your monthly financial cycle is ready to review.', 'info');
     }
+}
+
+// Month dropdown
+
+function month_select($all = false) {
+    global $month;
+
+    $html = "<select name='m' data-autosubmit>";
+
+    if ($all) {
+        $selected = ($month === 'all') ? 'selected' : '';
+        $html .= "<option value='all' $selected>All months</option>";
+    }
+
+    for ($i = -1; $i < 12; $i++) {
+        $value = date('Y-m', mktime(0, 0, 0, date('n') - $i, 1));
+        $selected = ($value === $month) ? 'selected' : '';
+
+        $html .= "<option value='$value' $selected>" .
+            date('F Y', strtotime($value . '-01')) .
+            "</option>";
+    }
+
+    return $html . "</select>";
 }

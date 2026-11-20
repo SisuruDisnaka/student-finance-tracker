@@ -26,6 +26,15 @@ document.addEventListener("DOMContentLoaded", function () {
     if (dropdown) dropdown.classList.remove("show");
   });
 
+  
+    // month drop down sends the form
+    var selects = document.querySelectorAll('select[data-autosubmit]');
+    for (var i = 0; i < selects.length; i++) {
+        selects[i].addEventListener('change', function () {
+            this.form.submit();
+        });
+    }
+    
   // hide messages after 4 seconds
   setTimeout(function () {
     var alerts = document.querySelectorAll(".alert");
