@@ -44,7 +44,7 @@ $user = rows('SELECT * FROM users WHERE id=?', [$uid])[0];
 
 <body>
 
-<div class="main">
+<div>
 <br>
 
 <div class="glow glow-one"></div>
@@ -66,7 +66,7 @@ $user = rows('SELECT * FROM users WHERE id=?', [$uid])[0];
         </div>
         <form method="post">
             <input type="hidden" name="action" value="name">
-            <label>Full Name<input name="name" value="<?= e($user['name']) ?>" required></label>
+            <label>Full Name<input name="name" value="<?= e($user['name']) ?>" required></label><br>
             <button class="btn btn-primary">Save Name</button>
         </form>
     </div>
@@ -74,10 +74,10 @@ $user = rows('SELECT * FROM users WHERE id=?', [$uid])[0];
     <div class="card">
         <h2>Change Password</h2>
         <form method="post">
-            <input type="hidden" name="action" value="password">
-            <label>Current Password<input type="password" name="current" required></label>
-            <label>New Password<input type="password" name="new" required></label>
-            <label>Confirm New Password<input type="password" name="confirm" required></label>
+            <input type="hidden" name="action" value="password"><br>
+            <label>Current Password<input type="password" name="current" required></label><br>
+            <label>New Password<input type="password" name="new" required></label><br>
+            <label>Confirm New Password<input type="password" name="confirm" required></label><br>
             <button class="btn btn-primary">Update Password</button>
         </form>
     </div>
@@ -86,3 +86,5 @@ $user = rows('SELECT * FROM users WHERE id=?', [$uid])[0];
 </div>
 
 </body>
+</html>
+<?php include 'includes/footer.php'; ?>
