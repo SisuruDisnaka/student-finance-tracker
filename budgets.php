@@ -26,6 +26,7 @@ if($_POST){
     }
     back();
 }
+
 include 'includes/header.php';
 
 $list = cats($like);
@@ -39,4 +40,23 @@ $list = cats($like);
     </div>
 </div>
 
+<?php if(!$list){ ?>
+    <div class="card empty">
+        <p><b>No categories yet.</b></p>
+        <button class="btn btn-primary" data-modal="budgetModal">+ Add Category</button>
+    </div>
+<?php } ?>
 
+<section class="grid cols-3">
+    <?php foreach($list as $c){
+        echo budget_card($c, "<span class='card-actions'>" . actions('budgetModal', $c, 'Delete this category and its expenses?') . "</span>");
+    } ?>
+</section>
+
+<?php
+modal('budgetModal', 'Budget', "
+    <label>Category<input name='name' placeholder='e.g. Food' required></label>
+    <label>Monthly Budget (Rs.)<input type='number' step='0.01' name='budget_amount' value='0' required></label>");
+
+include 'includes/footer.php';
+?>
