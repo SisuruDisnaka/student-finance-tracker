@@ -14,7 +14,7 @@ This document maintains a record of all change requests raised during the Studen
 | CR-007 | 2026-11-18 | Add Register and Logout         | Sisuru Disnaka |  #9 | Nethmi Navodya| Merged    | 2026-11-21  |
 | CR-003 | 2026-11-22 | Add income page         | Sathyadhi Dahanayake | #5   | Gimna Kaushadi| Merged | 2026-11-22  |
 | CR-006 | 2026-11-21 | Add expenses page               | Gayasha Ranasinghe | #7 | Sathyadhi Dahanayake | Merged | 2026-11-22 |
-| CR-009 | 2026-11-19 | Notification                    | Amaya Thhisera |   |  |  | |
+| CR-009 | 2026-11-19 | Notification                    | Amaya Thhisera | #11 | Gayasha Ranasinghe | Merged | 2026-11-22 |
 
 ## Approval Status Values
 
