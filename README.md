@@ -15,7 +15,7 @@ A personal finance tracker for students, built with plain PHP, MySQL, HTML, CSS 
 | Sathyadhi Dahanayake | [@SathyadhiDahanayake](https://github.com/SathyadhiDahanayake) |
 | Manuji Dilansa | [@ManujiDilansa](https://github.com/ManujiDilansa) |
 | Amaya Thisera | [@Amayathisera](https://github.com/Amayathisera) |
-| Gayasha Ranazinghe | [@GayashaRanazinghe](https://github.com/GayashaRanazinghe) |
+| Gayasha Ranasinghe | [@GayashaRanazinghe](https://github.com/GayashaRanazinghe) |
 | Gimna Kaushadi | [@gimnakaushadi-bot](https://github.com/gimnakaushadi-bot) |
 | Tharushi Lakshani | [@tharushilakshani-tl](https://github.com/tharushilakshani-tl) |
 
