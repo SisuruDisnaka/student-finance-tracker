@@ -17,7 +17,7 @@ This document maintains a record of all change requests raised during the Studen
 | CR-009 | 2026-11-19 | Notification                    | Amaya Thhisera       | #11 | Gayasha Ranasinghe   | Merged   | 2026-11-22  |
 | CR-008 | 2026-11-18 | Add Saving Plans                | Imasha Minoli        | #10 | Sisuru Disnaka       | Merged   | 2026-11-22  |
 | CR-012 | 2026-11-26 | Add reports page                | Tharushi lakshani    | #15 | Nethmi Navodya       | Merged   | 2026-11-22  |
-| CR-013 | 2026-11-22 | Add dashboard                   | Sisuru Disnaka       |     |                      |          |             |
+| CR-013 | 2026-11-22 | Add dashboard                   | Sisuru Disnaka       | #16 | Imasha Minoli        | Merged   | 2026-11-22  |
 
 ## Approval Status Values
 
