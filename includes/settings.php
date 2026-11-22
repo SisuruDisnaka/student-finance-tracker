@@ -4,5 +4,5 @@ return[
     'host' => 'localhost',
     'username' => 'root',
     'password' => '',
-    'database' => 'student_finance_db'
+    'database' => 'student_expense_tracker'
 ];
