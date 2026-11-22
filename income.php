@@ -2,12 +2,12 @@
 // Load database connection and common functions
 require 'includes/config.php';
 
-// Handle income form submission
+// handle income form submission
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $action = $_POST['action'] ?? '';
     $id = (int)($_POST['id'] ?? 0);
 
-    // Delete selected income
+    // delete selected income
     if ($action === 'delete') {
         q('DELETE FROM incomes WHERE id=? AND user_id=?', [$id, $uid]);
         flash('Income deleted.');

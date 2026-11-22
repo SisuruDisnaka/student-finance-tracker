@@ -34,6 +34,18 @@ CREATE TABLE expenses (
     FOREIGN KEY (category_id) REFERENCES categories(id) ON DELETE CASCADE
 );
 
+
+CREATE TABLE incomes (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT,
+    source VARCHAR(100) NOT NULL,
+    amount DECIMAL(12,2) NOT NULL,
+    income_date DATE NOT NULL,
+    note VARCHAR(255),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+);
+  
 CREATE TABLE saving_plans (
     id INT AUTO_INCREMENT PRIMARY KEY,
     user_id INT,
