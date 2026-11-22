@@ -9,6 +9,19 @@ if($_POST){
         q('DELETE FROM saving_plans WHERE id=? AND user_id=?', [$_POST['id'], $uid]);
         flash('Saving plan deleted.');
 
+    }elseif($action == 'funds'){
+        // add money to a plan and save the transaction
+        if(!valid_amount($_POST['amount'])){
+            flash('Amount must be more than 0.', 'error');
+        }else{
+            q('UPDATE saving_plans SET current_amount = current_amount + ? WHERE id=? AND user_id=?',
+                [$_POST['amount'], $_POST['id'], $uid]);
+            q('INSERT INTO saving_transactions (saving_plan_id, amount, transaction_date, note)
+                SELECT id, ?, CURDATE(), ? FROM saving_plans WHERE id=? AND user_id=?',
+                [$_POST['amount'], $_POST['note'], $_POST['id'], $uid]);
+            flash('Funds added.');
+        }
+
     }else{
         // create or edit a plan
         $name = trim($_POST['name']);
@@ -44,6 +57,9 @@ if($_POST){
 include 'includes/header.php';
 
 $plans = rows('SELECT * FROM saving_plans WHERE user_id=? ORDER BY id DESC', [$uid]);
+$history = rows('SELECT t.*, p.name FROM saving_transactions t
+    JOIN saving_plans p ON p.id = t.saving_plan_id
+    WHERE p.user_id=? ORDER BY t.id DESC LIMIT 15', [$uid]);
 ?>
 
 <div class="page-head">
@@ -79,11 +95,31 @@ $plans = rows('SELECT * FROM saving_plans WHERE user_id=? ORDER BY id DESC', [$u
             <small class="muted"><?= $p['target_date'] ? 'Target: ' . date('M d, Y', strtotime($p['target_date'])) : '' ?></small>
         </div>
         <div class="actions top-gap">
+            <button class="btn btn-sm btn-primary" data-modal="fundsModal" data-fill="<?= e(json_encode($p)) ?>">+ Add Funds</button>
             <?= actions('planModal', $p, 'Delete this plan and its history?') ?>
         </div>
     </div>
 <?php } ?>
 </section>
+
+<?php if($history){ ?>
+<div class="card gap-top">
+    <div class="section-head"><h2>Saving History</h2></div>
+    <div class="table-wrap"><table class="table">
+        <thead><tr><th>Date</th><th>Plan</th><th>Note</th><th class="num">Amount</th></tr></thead>
+        <tbody>
+        <?php foreach($history as $h){ ?>
+            <tr>
+                <td data-label="Date"><?= date('M d, Y', strtotime($h['transaction_date'])) ?></td>
+                <td data-label="Plan"><?= e($h['name']) ?></td>
+                <td data-label="Note"><?= e($h['note']) ?></td>
+                <td data-label="Amount" class="num text-success">+ <?= money($h['amount']) ?></td>
+            </tr>
+        <?php } ?>
+        </tbody>
+    </table></div>
+</div>
+<?php } ?>
 
 <?php
 modal('planModal', 'Saving Plan', "
@@ -94,6 +130,11 @@ modal('planModal', 'Saving Plan', "
         <label class='add-only'>Initial Amount (Rs.)<input type='number' step='0.01' name='initial_amount' value='0'></label>
     </div>
     <label>Target Date<input type='date' name='target_date'></label>");
+
+modal('fundsModal', '', "
+    <p><b>Add funds to <span data-bind='name'></span></b></p>
+    <label>Amount (Rs.)<input type='number' step='0.01' name='amount' required></label>
+    <label>Note (optional)<input name='note'></label>", 'funds');
 
 include 'includes/footer.php';
 ?>
