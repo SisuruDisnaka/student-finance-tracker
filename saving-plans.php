@@ -2,28 +2,41 @@
 require 'includes/config.php';
 
 if($_POST){
-    // create or edit a plan
-    $name = trim($_POST['name']);
-    $description = $_POST['description'];
-    $target = $_POST['target_amount'];
-    $date = $_POST['target_date'] ?: null;
-    $initial = max(0, (float)$_POST['initial_amount']);
+    $action = $_POST['action'];
 
-    if($name == ''){
-        flash('Plan name is required.', 'error');
-    }elseif(!valid_amount($target)){
-        flash('Target amount must be more than 0.', 'error');
-    }elseif($date && !valid_date($date)){
-        flash('Please enter a valid date.', 'error');
+    if($action == 'delete'){
+        // the saving history is deleted too
+        q('DELETE FROM saving_plans WHERE id=? AND user_id=?', [$_POST['id'], $uid]);
+        flash('Saving plan deleted.');
+
     }else{
-        q('INSERT INTO saving_plans (user_id, name, description, target_amount, current_amount, target_date) VALUES (?,?,?,?,?,?)',
-            [$uid, $name, $description, $target, $initial, $date]);
-        $planId = $db->insert_id;
-        if($initial > 0){
-            q("INSERT INTO saving_transactions (saving_plan_id, amount, transaction_date, note) VALUES (?, ?, CURDATE(), 'Initial amount')",
-                [$planId, $initial]);
+        // create or edit a plan
+        $name = trim($_POST['name']);
+        $description = $_POST['description'];
+        $target = $_POST['target_amount'];
+        $date = $_POST['target_date'] ?: null;
+        $initial = max(0, (float)$_POST['initial_amount']);
+
+        if($name == ''){
+            flash('Plan name is required.', 'error');
+        }elseif(!valid_amount($target)){
+            flash('Target amount must be more than 0.', 'error');
+        }elseif($date && !valid_date($date)){
+            flash('Please enter a valid date.', 'error');
+        }elseif($_POST['id'] > 0){
+            q('UPDATE saving_plans SET name=?, description=?, target_amount=?, target_date=? WHERE id=? AND user_id=?',
+                [$name, $description, $target, $date, $_POST['id'], $uid]);
+            flash('Saving plan updated.');
+        }else{
+            q('INSERT INTO saving_plans (user_id, name, description, target_amount, current_amount, target_date) VALUES (?,?,?,?,?,?)',
+                [$uid, $name, $description, $target, $initial, $date]);
+            $planId = $db->insert_id;
+            if($initial > 0){
+                q("INSERT INTO saving_transactions (saving_plan_id, amount, transaction_date, note) VALUES (?, ?, CURDATE(), 'Initial amount')",
+                    [$planId, $initial]);
+            }
+            flash('Saving plan created.');
         }
-        flash('Saving plan created.');
     }
     back();
 }
@@ -64,6 +77,9 @@ $plans = rows('SELECT * FROM saving_plans WHERE user_id=? ORDER BY id DESC', [$u
         <div class="kv">
             <small class="muted"><?= $pct ?>% saved</small>
             <small class="muted"><?= $p['target_date'] ? 'Target: ' . date('M d, Y', strtotime($p['target_date'])) : '' ?></small>
+        </div>
+        <div class="actions top-gap">
+            <?= actions('planModal', $p, 'Delete this plan and its history?') ?>
         </div>
     </div>
 <?php } ?>
