@@ -59,3 +59,9 @@ CREATE TABLE notifications (
     UNIQUE KEY (user_id, ref_key),
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 );
+INSERT INTO expenses (user_id, category_id, expense_name, amount, expense_date, note)
+SELECT @u, c.id, x.n, x.a, DATE_ADD(@m, INTERVAL x.d DAY), x.nt FROM (
+  SELECT 'Food' c,'Groceries' n,6500 a,1 d,'Supermarket' nt UNION ALL SELECT 'Food','Lunch',850,3,'University cafeteria' UNION ALL SELECT 'Food','Dinner with friends',4150,6,NULL
+  UNION ALL SELECT 'Transport','Bus pass',3000,1,'Monthly pass' UNION ALL SELECT 'Transport','Taxi',3300,5,'Late lab session' UNION ALL SELECT 'Education','Textbooks',7500,2,NULL
+  UNION ALL SELECT 'Rent','Boarding house',15000,1,NULL UNION ALL SELECT 'Utilities','Internet',2000,2,NULL UNION ALL SELECT 'Entertainment','Movie night',1800,7,NULL
+  UNION ALL SELECT 'Health','Pharmacy',900,8,NULL) x JOIN categories c ON c.user_id = @u AND c.name = x.c;
