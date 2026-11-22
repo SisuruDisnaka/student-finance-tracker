@@ -46,6 +46,16 @@ CREATE TABLE saving_plans (
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 );
 
+CREATE TABLE saving_transactions (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    saving_plan_id INT,
+    amount DECIMAL(12,2),
+    transaction_date DATE,
+    note VARCHAR(255),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (saving_plan_id) REFERENCES saving_plans(id) ON DELETE CASCADE
+);
+
 CREATE TABLE recurring_items (
     id INT AUTO_INCREMENT PRIMARY KEY,
     user_id INT,
