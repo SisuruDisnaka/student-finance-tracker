@@ -7,7 +7,7 @@ $latest = rows('SELECT * FROM notifications WHERE user_id=? ORDER BY id DESC LIM
 
 $menu = [
     'dashboard.php' => 'Dashboard',
-    'expenses.php' => 'Expenses',
+    'expense.php' => 'Expenses',
     'income.php' => 'Income',
     'budgets.php' => 'Budgets',
     'saving-plans.php' => 'Saving Plans',
@@ -19,7 +19,7 @@ $menu = [
 ];
 $icons = [
     'dashboard.php' => 'bi-grid-1x2',
-    'expenses.php' => 'bi-arrow-up-right',
+    'expense.php' => 'bi-arrow-up-right',
     'income.php' => 'bi-arrow-down-left',
     'budgets.php' => 'bi-pie-chart',
     'saving-plans.php' => 'bi-piggy-bank',

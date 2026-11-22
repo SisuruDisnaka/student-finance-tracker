@@ -32,24 +32,6 @@ include 'includes/header.php';
 $user = rows('SELECT * FROM users WHERE id=?', [$uid])[0];
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="theme-color" content="#050d1d">
-    <title>Login | StudentFinance</title>
-    <link rel="stylesheet" href="assets/style.css">
-</head>
-
-<body>
-
-<div class="main">
-<br>
-
-<div class="glow glow-one"></div>
-<div class="glow glow-two"></div>
-
 <div class="page-head">
     <div><h2>Profile</h2><p class="muted">Manage your account.</p></div>
 </div>
