@@ -39,6 +39,7 @@ $search = $_GET['q'] ?? '';
 $cat = $_GET['cat'] ?? '';
 $cats = rows('SELECT id, name FROM categories WHERE user_id=? ORDER BY name', [$uid]);
 
+
 $list = rows('SELECT e.*, c.name AS cat FROM expenses e
     JOIN categories c ON c.id = e.category_id
     WHERE e.user_id=? AND e.expense_date LIKE ?
